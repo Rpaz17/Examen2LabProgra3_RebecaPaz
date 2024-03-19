@@ -1,0 +1,20 @@
+#include "registro.h"
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cstdlib>
+#include <cstring>
+
+using namespace std;
+
+struct Persona{
+    char nombre[80] = "";
+    char username[20] = "";
+    int numero = 0;
+    string password = "";
+} persona;
+
+registro::registro()
+{
+
+}
