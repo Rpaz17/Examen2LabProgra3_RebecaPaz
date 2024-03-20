@@ -1,5 +1,19 @@
 #include "cframe.h"
 #include "ui_cframe.h"
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cstdlib>
+#include <cstring>
+
+using namespace std;
+
+struct Persona{
+    char nombre[80] = "";
+    char username[20] = "";
+    int numero = 0;
+    string password = "";
+} persona;
 
 cframe::cframe(QWidget *parent)
     : QMainWindow(parent)
@@ -12,7 +26,6 @@ cframe::~cframe()
 {
     delete ui;
 }
-
 
 void cframe::on_pushButton_pressed()
 {
