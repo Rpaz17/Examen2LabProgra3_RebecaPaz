@@ -9,14 +9,21 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ChatItem.cpp \
+    ClienteM.cpp \
+    MainWindow.cpp \
     main.cpp \
-    cframe.cpp
+    protocolo.cpp
 
 HEADERS += \
-    cframe.h
+    ChatItem.h \
+    ClienteM.h \
+    MainWindow.h \
+    protocolo.h
 
 FORMS += \
-    cframe.ui
+    ChatItem.ui \
+    MainWindow.ui
 
 QMAKE_CXXFLAGS += -std=gnu++14
 
