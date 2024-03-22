@@ -1,0 +1,10 @@
+release/ChatCliente.o
+release/ClienteM.o
+release/main.o
+release/cframe.o
+release/protocolo.o
+release/servidorm.o
+release/moc_ChatCliente.o
+release/moc_ClienteM.o
+release/moc_cframe.o
+release/moc_servidorm.o
