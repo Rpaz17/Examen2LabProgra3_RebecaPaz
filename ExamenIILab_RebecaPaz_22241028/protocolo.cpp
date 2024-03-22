@@ -58,11 +58,7 @@ void Protocolo::loadData(QByteArray data)
 
 QByteArray Protocolo::setSendRequest(QString sender, QString receiver)
 {
-    QString request = QString("{\"type\": \"friend_request\", \"sender\": \"%1\", \"receiver\": \"%2\"}")
-                            .arg(sender)
-                            .arg(receiver);
 
-        return request.toUtf8(); // Convertir a QByteArray
 }
 
 QByteArray Protocolo::setAcceptRequest()
