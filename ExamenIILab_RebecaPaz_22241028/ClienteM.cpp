@@ -13,10 +13,10 @@ void ClienteM::conectarAlServidor()
     socket->connectToHost(dirIp, puerto);
 }
 
-void ClienteM::enviarMensaje(QString mensaje, QString reciever)
+void ClienteM::enviarMensaje(QString mensaje)
 {
     Protocolo protocol;
-    socket->write(protocol.mensajeTexto(mensaje, reciever));
+    socket->write(protocol.mensajeTexto(mensaje));
 }
 
 void ClienteM::enviarNombre(QString nombre)
@@ -54,18 +54,6 @@ void ClienteM::rRead()
         break;
     case Protocolo::SetStatus:
         emit cambioStatus(protocol.getStatus());
-        break;
-    case Protocolo::ConexionCCS:
-        emit connectionCCS(protocol.myName(), protocol.clientsName());
-        break;
-    case  Protocolo::newClient:
-        emit newClientCServer(protocol.clientName());
-        break;
-    case Protocolo::ClienteDesc:
-        emit clientDesc(protocol.clientName());
-        break;
-    case Protocolo::ClientName:
-        emit clientNameChanged(protocol.prevName(), protocol.clientName());
         break;
     default:
         break;

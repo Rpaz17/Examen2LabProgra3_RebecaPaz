@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setUpClient();
+    ui->centralwidget->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -16,7 +16,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void Rebeca::MainWindow::setUpClient()
+void MainWindow::on_actionConectar_triggered()
 {
     cliente = new ClienteM();
     connect(cliente, &ClienteM::conectado, [this](){
@@ -25,21 +25,10 @@ void Rebeca::MainWindow::setUpClient()
     connect(cliente, &ClienteM::desconectado, [this](){
         ui->centralwidget->setEnabled(false);
     });
-
     connect(cliente, &ClienteM::mensajeRecibido, this, &MainWindow::dataRecibida);
 
-    connect(cliente, &ClienteM::connectionCCS, this, &MainWindow::onConnectionCCS);
-    connect(cliente, &ClienteM::newClientCServer, this, &MainWindow::onNewClientCServer);
-    connect(cliente, &ClienteM::clientDesc, this, &MainWindow::onClientDesc);
-    connect(cliente, &ClienteM::clientNameChanged, this, &MainWindow::onClientNameChanged);
-
     connect(ui->lnMensaje, &QLineEdit::textChanged, cliente, &ClienteM::sendIsTyping);
-
-}
-
-void MainWindow::on_actionConectar_triggered()
-{
-   cliente->conectarAlServidor();
+    cliente->conectarAlServidor();
 }
 
 void MainWindow::dataRecibida(QString mensaje)
@@ -60,7 +49,7 @@ void MainWindow::dataRecibida(QString mensaje)
 void MainWindow::on_btnSend_clicked()
 {
     auto mensaje = ui->lnMensaje->text().trimmed();
-    cliente->enviarMensaje(mensaje, ui->cmbStatus->currentText());
+    cliente->enviarMensaje(mensaje);
     //   ui->lstMensajes->addItem(mensaje);
     ui->lnMensaje->setText("");
 
@@ -87,26 +76,5 @@ void MainWindow::on_cmbStatus_currentIndexChanged(int index)
     auto status = (Protocolo::Status)index;
     cliente->enviarStatus(status);
 }
-
-void MainWindow::onConnectionCCS(QString myName, QStringList clientsName)
-{
-
-}
-
-void MainWindow::onNewClientCServer(QString clientName)
-{
-
-}
-
-void MainWindow::onClientNameChanged(QString prevName, QString nName)
-{
-
-}
-
-void MainWindow::onClientDesc(QString clientName)
-{
-
-}
-
 
 }//end namespace Rebeca;

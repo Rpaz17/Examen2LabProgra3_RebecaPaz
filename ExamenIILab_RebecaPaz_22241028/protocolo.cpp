@@ -8,13 +8,9 @@ Protocolo::Protocolo()
 
 }
 
-QByteArray Protocolo::mensajeTexto(QString message,QString reciever)
+QByteArray Protocolo::mensajeTexto(QString mensaje)
 {
-    QByteArray ba;
-    QDataStream out(&ba, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_11);
-    out << Text << reciever << mensaje ;
-    return ba;
+    return getData(Text, mensaje);
 }
 
 QByteArray Protocolo::isTypingMensaje()
@@ -46,7 +42,7 @@ void Protocolo::loadData(QByteArray data)
     _tipo = static_cast<TipoMensaje>(tipoInt);
     switch (_tipo) {
     case Text:
-        in >> _reciever >> mensaje;
+        in >> mensaje;
         break;
     case SetName:
         in >> nombre;
@@ -54,16 +50,6 @@ void Protocolo::loadData(QByteArray data)
     case SetStatus:
         in >> statusInt;
         status = static_cast<Status>(statusInt);
-        break;
-    case ClientName:
-    in >>_prevName>>_clientName;
-        break;
-    case newClient:
-    case ClienteDesc:
-        in >>_clientName;
-        break;
-    case ConexionCCS:
-    in >> _myName >>_clientsName;
         break;
     default:
         break;
@@ -96,31 +82,6 @@ QByteArray Protocolo::getData(TipoMensaje tipo, QString data)
     out.setVersion(QDataStream::Qt_5_11);
     out << static_cast<quint8>(tipo) << data;
     return ba;
-}
-
-const QString &Protocolo::myName() const
-{
-    return _myName;
-}
-
-const QStringList &Protocolo::clientsName() const
-{
-    return _clientsName;
-}
-
-const QString &Protocolo::prevName() const
-{
-    return _prevName;
-}
-
-const QString &Protocolo::clientName() const
-{
-    return _clientName;
-}
-
-Protocolo::Status Protocolo::reciever() const
-{
-    return status;
 }
 
 const QString &Protocolo::getNombre() const

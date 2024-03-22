@@ -30,16 +30,10 @@ private slots:
 
 
 
-    void onConnectionCCS(QString myName, QStringList clientsName);
-    void onNewClientCServer(QString clientName);
-    void onClientNameChanged(QString prevName, QString nName);
-    void onClientDesc(QString clientName);
-
 private:
     Ui::MainWindow *ui;
     QTcpSocket *mSocket;
     ClienteM *cliente;
-    void setUpClient();
 };
 }// end namespace Rebeca
 

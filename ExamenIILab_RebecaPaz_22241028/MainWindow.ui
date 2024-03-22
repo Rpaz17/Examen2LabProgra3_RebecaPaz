@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>546</width>
-    <height>434</height>
+    <width>640</width>
+    <height>404</height>
    </rect>
   </property>
   <property name="palette">
@@ -503,16 +503,6 @@
       <item>
        <widget class="QLineEdit" name="lnMensaje"/>
       </item>
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Destination</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="cmbDestination"/>
-      </item>
      </layout>
     </item>
    </layout>
@@ -522,7 +512,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>546</width>
+     <width>640</width>
      <height>25</height>
     </rect>
    </property>
