@@ -11,7 +11,7 @@ class ClienteM : public QObject
 public:
     explicit ClienteM(QHostAddress ip = QHostAddress::LocalHost, ushort port = 4500,  QObject *parent = nullptr);
     void conectarAlServidor();
-    void enviarMensaje(QString mensaje);
+    void enviarMensaje(QString mensaje, QString reciever);
     void enviarNombre(QString nombre);
     void enviarStatus(Protocolo::Status status);
 public:
@@ -24,6 +24,12 @@ signals:
     void isTyping();
     void cambioNombre(QString nombre);
     void cambioStatus(Protocolo::Status status);
+
+
+    void connectionCCS(QString myName, QStringList clientsName);
+    void newClientCServer(QString clientName);
+    void clientNameChanged(QString prevName, QString nName);
+    void clientDesc(QString clientName);
 private slots:
     void rRead();
 private:

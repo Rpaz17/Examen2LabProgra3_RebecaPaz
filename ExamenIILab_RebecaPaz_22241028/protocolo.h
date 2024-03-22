@@ -15,7 +15,11 @@ public:
         SetStatus,
         SendRequest,
         AcceptRequest,
-        RejectRequest
+        RejectRequest,
+        ClientName,
+        ConexionCCS, // mensaje enviado al servidor cuando el cliente se conecta y el servidor le ontesta con este tipo de mensaje
+        newClient, // cuando se conecte un cliente nuevo
+        ClienteDesc // cliente desconectado
     };
 
     enum Status{
@@ -27,7 +31,7 @@ public:
 
     Protocolo();
 
-    QByteArray mensajeTexto(QString mensaje);
+    QByteArray mensajeTexto(QString mensaje, QString reciever);
     QByteArray isTypingMensaje();
     QByteArray setName(QString name);
     QByteArray setStatus(Status status);
@@ -44,6 +48,16 @@ public:
 
     const QString &getNombre() const;
 
+    Status reciever() const;
+
+    const QString &clientName() const;
+
+    const QString &prevName() const;
+
+    const QStringList &clientsName() const;
+
+    const QString &myName() const;
+
 private:
     QByteArray getData(TipoMensaje tipo, QString data);
 
@@ -51,7 +65,12 @@ private:
     QString mensaje;
     QString nombre;
     Status status;
-
+    QString _reciever;
+    QString _clientName;
+    QString _prevName;
+    QStringList _clientsName;
+    QString _myName;
+    Status rec;
 };
 
 #endif // PROTOCOLO_H
