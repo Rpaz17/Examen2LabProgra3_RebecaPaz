@@ -1,0 +1,10 @@
+debug/ChatCliente.o
+debug/ClienteM.o
+debug/main.o
+debug/cframe.o
+debug/protocolo.o
+debug/servidorm.o
+debug/moc_ChatCliente.o
+debug/moc_ClienteM.o
+debug/moc_cframe.o
+debug/moc_servidorm.o

@@ -23,6 +23,8 @@ QByteArray Protocolo::setName(QString name)
     return getData(SetName, name);
 }
 
+
+
 QByteArray Protocolo::setStatus(Status status)
 {
     QByteArray ba;
@@ -54,25 +56,6 @@ void Protocolo::loadData(QByteArray data)
     default:
         break;
     }
-}
-
-QByteArray Protocolo::setSendRequest(QString sender, QString receiver)
-{
-    QString request = QString("{\"type\": \"friend_request\", \"sender\": \"%1\", \"receiver\": \"%2\"}")
-                            .arg(sender)
-                            .arg(receiver);
-
-        return request.toUtf8(); // Convertir a QByteArray
-}
-
-QByteArray Protocolo::setAcceptRequest()
-{
-    return getData(AcceptRequest, "");
-}
-
-QByteArray Protocolo::setRejectRequest()
-{
-    return getData(RejectRequest, "");
 }
 
 QByteArray Protocolo::getData(TipoMensaje tipo, QString data)
